@@ -5,6 +5,7 @@ import hello.hello_spring.repository.MemberRepository;
 import hello.hello_spring.repository.MemoryMemberRepository;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.Optional;
@@ -13,8 +14,14 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.fail;
 
 class MemberServiceTest {
-    MemberService memberService = new MemberService();
-    MemoryMemberRepository memoryMemberRepository = new MemoryMemberRepository();
+    MemberService memberService;
+    MemoryMemberRepository memoryMemberRepository ;
+
+    @BeforeEach
+    void BeforeEach(){
+        memoryMemberRepository = new MemoryMemberRepository();
+        memberService = new MemberService(memoryMemberRepository);
+    }
 
     @AfterEach
     void a(){
